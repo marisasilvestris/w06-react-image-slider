@@ -9,12 +9,12 @@ export default function SingleView({
   imgIndex,
   setImgIndex,
 }) {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   return (
     <>
       {visible == true ? (
-        <div className="singleview absolute left-0 top-0 w-screen h-screen bg-amber-200 hidden">
+        <div className="singleview bg-amber-400 absolute left-0 top-0 w-screen h-screen bg-amber-200 hidden ">
           <Button
             href={null}
             text="X"

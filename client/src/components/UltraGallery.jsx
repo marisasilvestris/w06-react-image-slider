@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import prettyLog from "../prettyLog";
 import Button from "./Button";
-import MegaImage from "./MegaImage";
+import UltraImage from "./UltraImage";
 import SingleView from "./SingleView";
 
-export default function MegaGallery({ url }) {
+export default function UltraGallery({ url }) {
   const [images, setImages] = useState([]);
   const [imgIndex, setImgIndex] = useState(0);
   const [imgLength, setImgLength] = useState(0);
@@ -24,16 +24,16 @@ export default function MegaGallery({ url }) {
       <SingleView />
       <div className="sliderContainer relative place-self-center">
         {/* grid */}
-        <div className="thumbnailContainer grid grid-cols-3 grid-rows-3 overflow-hidden w-full h-full place-self-center ">
+        <div className="thumbnailContainer flex flex-row overflow-hidden w-full h-full place-self-center ">
           {imgLength > 0
             ? images.map((image, index) => {
                 const text = image.title.split(" ");
                 return (
                   <div className="robit place-self-center h-full p-4">
                     <div className="imgContainer w-64">
-                      <MegaImage
+                      <UltraImage
                         key={index}
-                        src={image.thumb}
+                        src="./src/img/images/bony-steve.webp"
                         alt={image.alt}
                         id={image.id}
                         imgIndex={imgIndex}

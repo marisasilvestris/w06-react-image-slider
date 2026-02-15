@@ -18,11 +18,34 @@ export default function Gallery({ url }) {
       setImgLength(data.length);
     }
     fetchImgs();
-  }, [url, images]);
+  }, [url]);
+
+  useEffect(() => {
+    function arrowPress(e) {
+      if (e.key == "ArrowLeft") {
+        if (imgIndex === 0) {
+          setImgIndex(imgLength - 1);
+        } else {
+          setImgIndex(imgIndex - 1);
+        }
+      } else if (e.key == "ArrowRight") {
+        if (imgIndex === imgLength - 1) {
+          setImgIndex(0);
+        } else {
+          setImgIndex(imgIndex + 1);
+        }
+      }
+      prettyLog(e.key);
+    }
+    window.addEventListener(`keydown`, arrowPress);
+
+    return () => window.removeEventListener("keydown", arrowPress);
+  }, [imgLength, imgIndex]);
+
   return (
     <>
       <SingleView />
-      <div className="sliderContainer relative content-center">
+      <div className="sliderContainer overflow-hidden content-center">
         {/* multi container */}
         {/* <div className="imageContainer w-screen h-auto flex overflow-auto">
         {imgLength > 0
@@ -44,7 +67,10 @@ export default function Gallery({ url }) {
             <Image
               src={images[imgIndex].src}
               alt="foo"
-              className="object-cover w-full h-full"
+              className="aspect-square w-full"
+              imgIndex={imgIndex}
+              setImgIndex={setImgIndex}
+              id={0}
             />
           ) : (
             ""
@@ -52,24 +78,20 @@ export default function Gallery({ url }) {
         </div>
 
         {/* thumbnails */}
-        <div className="thumbnailContainer flex flex-row overflow-auto place-self-center absolute bottom-0">
+        <div className="thumbnailContainer flex flex-row place-self-center absolute bottom-0">
           {imgLength > 0
             ? images.map((image, index) => {
                 return (
-                  <div className=" place-self-center">
-                    <div className="imgContainer">
+                  <div key={index} className="thumbnail aspect-square">
+                    <div className="imgContainer object-contain">
                       <Image
-                        key={index}
                         src={image.thumb}
                         alt={image.alt}
                         id={image.id}
                         imgIndex={imgIndex}
-                        className="place-self-center"
+                        className="h-auto w-auto"
                         setImgIndex={setImgIndex}
                       />
-                    </div>
-                    <div className="text-3xl uppercase">
-                      <h3 className="">{image.alt}</h3>
                     </div>
                   </div>
                 );

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import prettyLog from "../prettyLog";
 
-export default function Image({
+export default function UltraImage({
   id,
   src,
   alt,

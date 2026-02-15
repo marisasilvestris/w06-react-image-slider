@@ -4,28 +4,60 @@ import "./App.css";
 import prettyLog from "./prettyLog";
 import Header from "./components/Header";
 import MegaGallery from "./components/MegaGallery";
+import UltraGallery from "./components/UltraGallery";
 import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
 import Button from "./components/Button";
 import konamiCode from "./konami";
 
 function App() {
-  const [secret, setSecret] = useState(false);
-  konamiCode(() => {
-    setSecret(!secret);
-    prettyLog(`test`);
-  });
+  const [secret, setSecret] = useState(0);
+  // [
+  //   "ArrowUp",
+  //   "ArrowUp",
+  //   "ArrowDown",
+  //   "ArrowDown",
+  //   "ArrowLeft",
+  //   "ArrowRight",
+  //   "ArrowLeft",
+  //   "ArrowRight",
+  //   "b",
+  //   "a",
+  // ];
+  useEffect(() => {
+    konamiCode(["ArrowUp"], () => {
+      if (secret >= 2) {
+        setSecret(0);
+      } else {
+        setSecret(secret + 1);
+      }
+      prettyLog(`secret is ${secret}`);
+    });
+  }, [secret]);
 
   return (
     <>
       <Header />
       <main className="">
         {/* <Button href="test" text="helo btton" /> */}
-        {secret === true ? (
+        {/* old boolean toggle */}
+        {/* {secret === true ? (
           <MegaGallery url="http://localhost:9001/robitlist" />
         ) : (
           <Gallery url="http://localhost:9001/imagelist" />
-        )}
+        )} */}
+        {(() => {
+          switch (secret) {
+            case 0:
+              return <Gallery url="http://localhost:9001/imagelist" />;
+            case 1:
+              return <MegaGallery url="http://localhost:9001/robitlist" />;
+            case 2:
+              return <UltraGallery url="http://localhost:9001/robitlist" />;
+            default:
+              return null;
+          }
+        })()}
       </main>
       <Footer />
     </>
