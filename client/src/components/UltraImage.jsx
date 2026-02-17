@@ -13,7 +13,6 @@ export default function UltraImage({
   function imageClick() {
     prettyLog(`moving from image #${imgIndex} to image #${id}`);
     setVisible(!visible);
-    prettyLog(id);
     setImgIndex(id);
   }
   return (

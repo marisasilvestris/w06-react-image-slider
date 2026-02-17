@@ -3,6 +3,7 @@ import pg from "pg";
 import dotenv from "dotenv";
 import cors from "cors";
 import megaData from "./megaman-data.js";
+import ultraData from "./ultra-data.js";
 import data from "./data.js";
 
 const app = express();
@@ -27,6 +28,9 @@ app.get(`/robitlist`, (req, res) => {
 });
 app.get(`/imagelist`, (req, res) => {
   res.status(200).send(data());
+});
+app.get(`/ultralist`, (req, res) => {
+  res.status(200).send(ultraData());
 });
 
 // Individual listing page

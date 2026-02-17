@@ -1,41 +1,35 @@
+import prettyLog from "../prettyLog";
 import Button from "./Button";
 import { useState } from "react";
+import Image from "./Image";
 
 export default function SingleView({
   id,
-  src,
-  alt,
   className,
   imgIndex,
-  setImgIndex,
+  singleVisible,
+  setSingleVisible,
+  images,
 }) {
-  const [visible, setVisible] = useState(true);
-
   return (
     <>
-      {visible == true ? (
-        <div className="singleview bg-amber-400 absolute left-0 top-0 w-screen h-screen bg-amber-200 hidden ">
-          <Button
+      {singleVisible ? (
+        <div
+          className="singleview bg-amber-400 fixed left-0 top-0 w-screen h-screen z-999 mr-auto ml-auto"
+          onClick={() => {
+            setSingleVisible(!singleVisible);
+          }}
+        >
+          <Image src={images[imgIndex].src} className="self-center" />
+          <p>test</p>
+          {/* <Button
             href={null}
             text="X"
-            visible={visible}
-            onClick={() => {
-              setVisible(!visible);
-            }}
-          />
+            className={"absolute top-3 right-3"}
+            onClick={buttonClick}
+          /> */}
         </div>
       ) : null}
     </>
-
-    // <div className="singleview absolute left-0 top-0 w-screen h-screen bg-amber-200 hidden">
-    //   <Button
-    //     href={null}
-    //     text="X"
-    //     visible={visible}
-    //     onClick={() => {
-    //       setVisible(!visible);
-    //     }}
-    //   />
-    // </div>
   );
 }

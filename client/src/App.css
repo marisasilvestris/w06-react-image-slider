@@ -25,24 +25,29 @@
 }
 
 #root {
-  font-family: MMRock9;
-  background-image: url("./img/bg.png");
   image-rendering: pixelated;
   background-size: 12.5%;
 }
-.robit .imgContainer {
+.gallery {
+  background-image: url("./img/bg.png");
+}
+.megaman {
+  background-image: url("./img/bg.png");
+}
+.megaman .imgContainer {
   border: 32px solid transparent;
   image-rendering: pixelated;
   border-image: url("./img/frame-border.png") 16;
   border-image-width: 64px;
   overflow: hidden;
 }
-.robit h3 {
+.megaman {
+  font-family: MMRock9;
   text-shadow: rgba(0, 0, 0, 0.6) 5px 5px;
 }
 
 @media (max-width: 800px) {
-  .thumbnailContainer {
+  .megaman .thumbnailContainer {
     display: flex;
     flex-flow: column nowrap;
   }

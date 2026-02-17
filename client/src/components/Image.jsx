@@ -1,33 +1,20 @@
 import { useState } from "react";
 import prettyLog from "../prettyLog";
+import SingleView from "./SingleView";
 
-export default function Image({
-  id,
-  src,
-  alt,
-  className,
-  imgIndex,
-  setImgIndex,
-}) {
-  const [visible, setVisible] = useState(false);
-  function imageClick() {
-    prettyLog(`moving from image #${imgIndex} to image #${id}`);
-    setVisible(!visible);
-    prettyLog(id);
-    setImgIndex(id);
-  }
+export default function Image({ id, src, alt, className, onClick }) {
   return (
-    <img
-      key={id}
-      className={className}
-      src={src}
-      alt={alt}
-      onClick={() => {
-        imageClick();
-      }}
-      onFocus={() => {
-        prettyLog("focused!");
-      }}
-    />
+    <>
+      <img
+        key={id}
+        className={className}
+        src={src}
+        alt={alt}
+        onClick={onClick}
+        onFocus={() => {
+          prettyLog("focused!");
+        }}
+      />
+    </>
   );
 }

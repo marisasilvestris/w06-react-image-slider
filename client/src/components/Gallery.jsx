@@ -11,86 +11,84 @@ export default function Gallery({ url }) {
   const [imgLength, setImgLength] = useState(0);
 
   useEffect(() => {
-    async function fetchImgs() {
+    async function fetchImgs(url) {
       const res = await fetch(url);
       const data = await res.json();
       setImages(data);
       setImgLength(data.length);
     }
-    fetchImgs();
+    fetchImgs(url);
   }, [url]);
+
+  function leftBtn() {
+    if (imgIndex === 0) {
+      setImgIndex(imgLength - 1);
+    } else {
+      setImgIndex(imgIndex - 1);
+    }
+  }
+
+  function rightBtn() {
+    if (imgIndex === imgLength - 1) {
+      setImgIndex(0);
+    } else {
+      setImgIndex(imgIndex + 1);
+    }
+  }
 
   useEffect(() => {
     function arrowPress(e) {
       if (e.key == "ArrowLeft") {
-        if (imgIndex === 0) {
-          setImgIndex(imgLength - 1);
-        } else {
-          setImgIndex(imgIndex - 1);
-        }
+        leftBtn();
       } else if (e.key == "ArrowRight") {
-        if (imgIndex === imgLength - 1) {
-          setImgIndex(0);
-        } else {
-          setImgIndex(imgIndex + 1);
-        }
+        rightBtn();
       }
       prettyLog(e.key);
     }
     window.addEventListener(`keydown`, arrowPress);
-
     return () => window.removeEventListener("keydown", arrowPress);
-  }, [imgLength, imgIndex]);
+  }, [imgLength, imgIndex, leftBtn, rightBtn]);
+
+  const [singleVisible, setSingleVisible] = useState(false);
 
   return (
     <>
-      <SingleView />
-      <div className="sliderContainer overflow-hidden content-center">
-        {/* multi container */}
-        {/* <div className="imageContainer w-screen h-auto flex overflow-auto">
-        {imgLength > 0
-          ? images.map((image, index) => {
-              return (
-                <Image
-                  key={index}
-                  src={image.src}
-                  alt={image.alt}
-                  className="object-cover w-full h-full"
-                />
-              );
-            })
-          : ""}
-      </div> */}
+      <SingleView
+        singleVisible={singleVisible}
+        setSingleVisible={setSingleVisible}
+        images={images}
+        imgIndex={imgIndex}
+      />
+      <div className="gallery sliderContainer h-screen">
         {/* /* single container */}
         <div className="imgContainer">
           {imgLength > 0 ? (
-            <Image
-              src={images[imgIndex].src}
-              alt="foo"
-              className="aspect-square w-full"
-              imgIndex={imgIndex}
-              setImgIndex={setImgIndex}
-              id={0}
-            />
-          ) : (
-            ""
-          )}
+            <>
+              <Image
+                src={images[imgIndex].src}
+                alt={images[imgIndex].alt}
+                onClick={() => {
+                  setSingleVisible(!singleVisible);
+                }}
+              />
+            </>
+          ) : null}
         </div>
 
         {/* thumbnails */}
         <div className="thumbnailContainer flex flex-row place-self-center absolute bottom-0">
           {imgLength > 0
-            ? images.map((image, index) => {
+            ? images.map((image) => {
                 return (
-                  <div key={index} className="thumbnail aspect-square">
-                    <div className="imgContainer object-contain">
+                  <div key={image.id} className="thumbnail">
+                    <div className="imgContainer">
                       <Image
                         src={image.thumb}
                         alt={image.alt}
                         id={image.id}
-                        imgIndex={imgIndex}
-                        className="h-auto w-auto"
-                        setImgIndex={setImgIndex}
+                        onClick={() => {
+                          setImgIndex(image.id);
+                        }}
                       />
                     </div>
                   </div>
@@ -107,6 +105,7 @@ export default function Gallery({ url }) {
           setImgIndex={setImgIndex}
           imgLength={imgLength}
           dir="left"
+          onClick={leftBtn}
           className="absolute left-0 top-1/2"
         />
         <Button
@@ -116,6 +115,7 @@ export default function Gallery({ url }) {
           setImgIndex={setImgIndex}
           imgLength={imgLength}
           dir="right"
+          onClick={rightBtn}
           className="absolute right-0 top-1/2"
         />
       </div>

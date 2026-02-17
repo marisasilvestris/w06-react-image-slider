@@ -25,20 +25,38 @@ function App() {
   //   "a",
   // ];
   useEffect(() => {
-    konamiCode(["ArrowUp"], () => {
-      if (secret >= 2) {
+    function triggeredEvent() {
+      if (secret >= 1) {
         setSecret(0);
       } else {
         setSecret(secret + 1);
       }
       prettyLog(`secret is ${secret}`);
-    });
+    }
+    konamiCode(
+      [
+        "ArrowUp",
+        "ArrowUp",
+        "ArrowDown",
+        "ArrowDown",
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowLeft",
+        "ArrowRight",
+        "b",
+        "a",
+      ],
+      triggeredEvent,
+    );
+    return () => {
+      removeEventListener("keydown", triggeredEvent);
+    };
   }, [secret]);
 
   return (
     <>
       <Header />
-      <main className="">
+      <main className="h-full w-full">
         {/* <Button href="test" text="helo btton" /> */}
         {/* old boolean toggle */}
         {/* {secret === true ? (
@@ -48,14 +66,12 @@ function App() {
         )} */}
         {(() => {
           switch (secret) {
-            case 0:
-              return <Gallery url="http://localhost:9001/imagelist" />;
             case 1:
               return <MegaGallery url="http://localhost:9001/robitlist" />;
-            case 2:
-              return <UltraGallery url="http://localhost:9001/robitlist" />;
+            // case 2:
+            //   return <UltraGallery url="http://localhost:9001/ultralist" />;
             default:
-              return null;
+              return <Gallery url="http://localhost:9001/imagelist" />;
           }
         })()}
       </main>

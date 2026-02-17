@@ -21,18 +21,26 @@ export default function UltraGallery({ url }) {
   }, [url]);
   return (
     <>
-      <SingleView />
-      <div className="sliderContainer relative place-self-center">
+      <audio autoPlay>
+        <source
+          src="./src/audio/ultrakill-the-fire-is-gone.mp3"
+          type="audio/mpeg"
+        />
+        pls enable audio support (:
+      </audio>
+      <div className="ultrakill sliderContainer relative place-self-center">
         {/* grid */}
         <div className="thumbnailContainer flex flex-row overflow-hidden w-full h-full place-self-center ">
           {imgLength > 0
             ? images.map((image, index) => {
                 const text = image.title.split(" ");
                 return (
-                  <div className="robit place-self-center h-full p-4">
+                  <div
+                    key={index}
+                    className="robit place-self-center h-full p-4"
+                  >
                     <div className="imgContainer w-64">
                       <UltraImage
-                        key={index}
                         src="./src/img/images/bony-steve.webp"
                         alt={image.alt}
                         id={image.id}

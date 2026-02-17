@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import prettyLog from "../prettyLog";
 import Button from "./Button";
-import MegaImage from "./MegaImage";
+import Image from "./Image";
 import SingleView from "./SingleView";
 
 export default function MegaGallery({ url }) {
@@ -11,67 +11,96 @@ export default function MegaGallery({ url }) {
   const [imgLength, setImgLength] = useState(0);
 
   useEffect(() => {
-    async function fetchImgs() {
+    async function fetchImgs(url) {
       const res = await fetch(url);
       const data = await res.json();
       setImages(data);
       setImgLength(data.length);
     }
-    fetchImgs();
+    fetchImgs(url);
   }, [url]);
+
+  useEffect(() => {
+    function arrowPress(e) {
+      if (e.key == "ArrowLeft") {
+        if (imgIndex === 0) {
+          setImgIndex(imgLength - 1);
+        } else {
+          setImgIndex(imgIndex - 1);
+        }
+      } else if (e.key == "ArrowRight") {
+        if (imgIndex === imgLength - 1) {
+          setImgIndex(0);
+        } else {
+          setImgIndex(imgIndex + 1);
+        }
+      }
+      prettyLog(e.key);
+    }
+    window.addEventListener(`keydown`, arrowPress);
+    return () => window.removeEventListener("keydown", arrowPress);
+  }, [imgLength, imgIndex]);
+
+  const [singleVisible, setSingleVisible] = useState(false);
+
+  function imgClick() {
+    prettyLog(singleVisible);
+    setSingleVisible(!singleVisible);
+  }
+
   return (
     <>
-      <SingleView />
-      <div className="sliderContainer relative place-self-center">
-        {/* grid */}
+      <SingleView
+        singleVisible={singleVisible}
+        setSingleVisible={setSingleVisible}
+        images={images}
+        imgIndex={imgIndex}
+        onClick={() => {
+          setSingleVisible(!singleVisible);
+        }}
+      />
+      {/* <audio autoPlay>
+        <source src="./src/audio/03-stage-select.mp3" type="audio/mpeg" />
+        pls enable audio support (:
+      </audio> */}
+
+      <div className="megaman sliderContainer relative place-self-center">
+        {/* thumbnails */}
         <div className="thumbnailContainer grid grid-cols-3 grid-rows-3 overflow-hidden w-full h-full place-self-center ">
           {imgLength > 0
-            ? images.map((image, index) => {
+            ? images.map((image) => {
                 const text = image.title.split(" ");
                 return (
-                  <div className="robit place-self-center h-full p-4">
-                    <div className="imgContainer w-64">
-                      <MegaImage
-                        key={index}
+                  <div key={image.id} className="thumbnail">
+                    <div className="imgContainer">
+                      <Image
                         src={image.thumb}
                         alt={image.alt}
                         id={image.id}
-                        imgIndex={imgIndex}
+                        onClick={() => {
+                          setImgIndex(image.id);
+                          setSingleVisible(true);
+                        }}
                         className="w-full h-full place-self-center"
-                        setImgIndex={setImgIndex}
                       />
                     </div>
                     <div className="text-3xl uppercase flex w-full flex-row flex-wrap place-content-between">
                       <h3 className="text-start w-full text-white">
                         {text[0]}
                       </h3>
-                      <h3 className="text-end w-full text-white">{text[1]}</h3>
+                      {text[1] ? (
+                        <h3 className="text-end w-full text-white">
+                          {text[1]}
+                        </h3>
+                      ) : (
+                        ""
+                      )}
                     </div>
                   </div>
                 );
               })
-            : "<div class='error'>error on import!</div>"}
+            : ""}
         </div>
-
-        {/* left/right buttons */}
-        {/* <Button
-          href={null}
-          text="left"
-          imgIndex={imgIndex}
-          setImgIndex={setImgIndex}
-          imgLength={imgLength}
-          dir="left"
-          className="absolute left-0 align-middle"
-        /> */}
-        {/* <Button
-        href={null}
-        text="right"
-        imgIndex={imgIndex}
-        setImgIndex={setImgIndex}
-        imgLength={imgLength}
-        dir="right"
-        className=""
-      /> */}
       </div>
     </>
   );
