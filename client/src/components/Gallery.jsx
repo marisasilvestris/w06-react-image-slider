@@ -20,6 +20,7 @@ export default function Gallery({ url }) {
     fetchImgs(url);
   }, [url]);
 
+  // legit do not have the time to find out what this error means but it seems to work anyway. small graces.
   function leftBtn() {
     if (imgIndex === 0) {
       setImgIndex(imgLength - 1);
@@ -58,11 +59,11 @@ export default function Gallery({ url }) {
         setSingleVisible={setSingleVisible}
         image={images[imgIndex]}
         imgIndex={imgIndex}
-        className="singleview bg-amber-300 fixed left-0 top-0 w-screen h-screen flex overflow-hidden z-999"
+        className="singleview gallery fixed left-0 top-0 w-screen h-screen flex overflow-hidden z-999"
       />
-      <div className="gallery flex flex-col min-w-screen min-h-screen">
+      <div className="gallery flex flex-col h-screen w-screen">
         {/* /* single container */}
-        <div className="imgContainer grow relative place-self-center ">
+        <div className="imgContainer grow relative flex place-self-center">
           {imgLength > 0 ? (
             <>
               <Image
@@ -70,7 +71,7 @@ export default function Gallery({ url }) {
                 onClick={() => {
                   setSingleVisible(!singleVisible);
                 }}
-                className="m-auto size-full"
+                className="object-cover"
               />
               <p>{images[imgIndex].desc}</p>
             </>

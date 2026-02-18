@@ -27,20 +27,25 @@
 #root {
 }
 .gallery {
-  background-image: url("./img/Clouds_(Windows_95).webp");
+  background-image: url("https://msnicelupe.neocities.org/vault/react-image-slider/img/Clouds_(Windows_95).webp");
   background-size: cover;
   image-rendering: pixelated;
 }
+.gallery h2 {
+  color: purple;
+  background-color: plum;
+}
 .megaman {
-  background-image: url("./img/robits/bg.png");
+  background-image: url("https://msnicelupe.neocities.org/vault/react-image-slider/img/robits/bg.png");
   background-size: 12.5%;
   image-rendering: pixelated;
-  font-family: MMRock9;
+  font-family: "MMRock9";
   text-shadow: rgba(0, 0, 0, 1) 5px 5px;
 }
 .megaman .imgContainer {
   border: 32px solid transparent;
-  border-image: url("./img/frame-border.png") 16;
+  border-image: url("https://msnicelupe.neocities.org/vault/react-image-slider/img/frame-border.png")
+    16;
   border-image-width: 64px;
   overflow: hidden;
 }
@@ -48,5 +53,8 @@
   .megaman .gridContainer {
     display: flex;
     flex-flow: column nowrap;
+  }
+  .singleview {
+    flex-flow: column;
   }
 }

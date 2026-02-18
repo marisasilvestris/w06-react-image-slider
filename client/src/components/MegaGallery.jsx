@@ -53,16 +53,19 @@ export default function MegaGallery({ url }) {
         onClick={() => {
           setSingleVisible(!singleVisible);
         }}
-        className="singleview bg-blue-500 fixed left-0 top-0 w-screen h-screen flex overflow-hidden z-999"
+        className="singleview megaman fixed left-0 top-0 w-screen h-screen flex overflow-hidden z-999"
       />
-      {/* <audio autoPlay>
-        <source src="./src/audio/03-stage-select.mp3" type="audio/mpeg" />
+      <audio autoPlay>
+        <source
+          src="https://msnicelupe.neocities.org/vault/react-image-slider/audio/03-stage-select.mp3"
+          type="audio/mpeg"
+        />
         pls enable audio support (:
-      </audio> */}
+      </audio>
 
-      <div className="megaman place-items-center min-w-screen min-h-screen">
+      <div className="megaman place-items-center min-w-screen flex min-h-screen">
         {/* thumbnails */}
-        <div className="gridContainer grid grid-cols-3 grid-rows-3 max-w-300 max-h-300">
+        <div className="gridContainer grid grid-cols-3 grid-rows-3 max-w-250 max-h-250 min-h-fit m-auto">
           {imgLength > 0
             ? images.map((image) => {
                 const text = image.title.split(" ");

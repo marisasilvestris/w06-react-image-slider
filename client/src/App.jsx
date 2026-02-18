@@ -4,7 +4,7 @@ import "./App.css";
 import prettyLog from "./prettyLog";
 import Header from "./components/Header";
 import MegaGallery from "./components/MegaGallery";
-import UltraGallery from "./components/UltraGallery";
+// import UltraGallery from "./components/UltraGallery";
 import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
 import Button from "./components/Button";
@@ -33,7 +33,21 @@ function App() {
       }
       prettyLog(`secret is ${secret}`);
     }
-    konamiCode(["ArrowUp"], triggeredEvent);
+    konamiCode(
+      [
+        "ArrowUp",
+        "ArrowUp",
+        "ArrowDown",
+        "ArrowDown",
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowLeft",
+        "ArrowRight",
+        "b",
+        "a",
+      ],
+      triggeredEvent,
+    );
     return () => {
       removeEventListener("keydown", triggeredEvent);
     };
@@ -53,15 +67,11 @@ function App() {
         {(() => {
           switch (secret) {
             case 1:
-              return (
-                <MegaGallery url="https://w06-react-image-slider-server.onrender.com/robitlist" />
-              );
+              return <MegaGallery url="http://localhost:9001/robitlist" />;
             // case 2:
             //   return <UltraGallery url="http://localhost:9001/ultralist" />;
             default:
-              return (
-                <Gallery url="https://w06-react-image-slider-server.onrender.com/imagelist" />
-              );
+              return <Gallery url="http://localhost:9001/imagelist" />;
           }
         })()}
       </main>
