@@ -53,11 +53,15 @@ function App() {
         {(() => {
           switch (secret) {
             case 1:
-              return <MegaGallery url="http://localhost:9001/robitlist" />;
+              return (
+                <MegaGallery url="https://w06-react-image-slider-server.onrender.com/robitlist" />
+              );
             // case 2:
             //   return <UltraGallery url="http://localhost:9001/ultralist" />;
             default:
-              return <Gallery url="http://localhost:9001/imagelist" />;
+              return (
+                <Gallery url="https://w06-react-image-slider-server.onrender.com/imagelist" />
+              );
           }
         })()}
       </main>
