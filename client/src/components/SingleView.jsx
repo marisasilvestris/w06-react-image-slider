@@ -1,11 +1,8 @@
-import prettyLog from "../prettyLog";
 import Button from "./Button";
-import { useState } from "react";
 import Image from "./Image";
 
 export default function SingleView({
   className,
-  imgIndex,
   singleVisible,
   setSingleVisible,
   image,

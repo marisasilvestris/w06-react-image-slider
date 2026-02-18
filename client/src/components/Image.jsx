@@ -1,5 +1,3 @@
-import { useState } from "react";
-import prettyLog from "../prettyLog";
 import SingleView from "./SingleView";
 
 export default function Image({

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-// eslint-disable-next-line no-unused-vars
 import prettyLog from "../prettyLog";
 import Button from "./Button";
 import Image from "./Image";
