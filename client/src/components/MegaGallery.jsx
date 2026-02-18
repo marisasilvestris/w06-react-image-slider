@@ -43,45 +43,39 @@ export default function MegaGallery({ url }) {
 
   const [singleVisible, setSingleVisible] = useState(false);
 
-  function imgClick() {
-    prettyLog(singleVisible);
-    setSingleVisible(!singleVisible);
-  }
-
   return (
     <>
       <SingleView
         singleVisible={singleVisible}
         setSingleVisible={setSingleVisible}
-        images={images}
+        image={images[imgIndex]}
         imgIndex={imgIndex}
         onClick={() => {
           setSingleVisible(!singleVisible);
         }}
+        className="singleview bg-blue-500 fixed left-0 top-0 w-screen h-screen flex overflow-hidden z-999"
       />
       {/* <audio autoPlay>
         <source src="./src/audio/03-stage-select.mp3" type="audio/mpeg" />
         pls enable audio support (:
       </audio> */}
 
-      <div className="megaman sliderContainer relative place-self-center">
+      <div className="megaman place-items-center min-w-screen min-h-screen">
         {/* thumbnails */}
-        <div className="thumbnailContainer grid grid-cols-3 grid-rows-3 overflow-hidden w-full h-full place-self-center ">
+        <div className="gridContainer grid grid-cols-3 grid-rows-3 max-w-300 max-h-300">
           {imgLength > 0
             ? images.map((image) => {
                 const text = image.title.split(" ");
                 return (
-                  <div key={image.id} className="thumbnail">
-                    <div className="imgContainer">
+                  <div key={image.id} className="thumbnail relative p-8">
+                    <div className="imgContainer relative">
                       <Image
-                        src={image.thumb}
-                        alt={image.alt}
-                        id={image.id}
+                        image={image}
                         onClick={() => {
                           setImgIndex(image.id);
                           setSingleVisible(true);
                         }}
-                        className="w-full h-full place-self-center"
+                        className="w-full h-full"
                       />
                     </div>
                     <div className="text-3xl uppercase flex w-full flex-row flex-wrap place-content-between">

@@ -33,21 +33,7 @@ function App() {
       }
       prettyLog(`secret is ${secret}`);
     }
-    konamiCode(
-      [
-        "ArrowUp",
-        "ArrowUp",
-        "ArrowDown",
-        "ArrowDown",
-        "ArrowLeft",
-        "ArrowRight",
-        "ArrowLeft",
-        "ArrowRight",
-        "b",
-        "a",
-      ],
-      triggeredEvent,
-    );
+    konamiCode(["ArrowUp"], triggeredEvent);
     return () => {
       removeEventListener("keydown", triggeredEvent);
     };

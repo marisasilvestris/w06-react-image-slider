@@ -2,18 +2,31 @@ import { useState } from "react";
 import prettyLog from "../prettyLog";
 import SingleView from "./SingleView";
 
-export default function Image({ id, src, alt, className, onClick }) {
+export default function Image({
+  image,
+  className,
+  onClick,
+  onMouseOver,
+  setImgIndex,
+}) {
+  function keyFilter(e) {
+    if (e.key == "Enter" || e.key == " ") {
+      setImgIndex(image.id);
+    }
+  }
   return (
     <>
       <img
-        key={id}
+        key={image.id}
         className={className}
-        src={src}
-        alt={alt}
+        src={image.src}
+        alt={image.alt}
         onClick={onClick}
-        onFocus={() => {
-          prettyLog("focused!");
+        onKeyDown={(e) => {
+          keyFilter(e);
         }}
+        tabIndex={1}
+        onMouseOver={onMouseOver}
       />
     </>
   );

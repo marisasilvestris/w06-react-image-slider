@@ -5,6 +5,7 @@ export default function megaData() {
       src: "./src/img/robits/spark-man.png",
       title: "Spark Man",
       alt: "",
+      desc: "A robot created to charge electricity and he can generate twice as high voltage as Elec Man can. - 'Don't fall out of line, please.'",
       thumb: "./src/img/robits/spark-man.png",
     },
     {
@@ -12,6 +13,7 @@ export default function megaData() {
       src: "./src/img/robits/snake-man.png",
       title: "Snake Man",
       alt: "",
+      desc: "A robot created to investigate the narrow areas. He uses a snake-like missile called Search Snake. - 'You can't hide from me!'",
       thumb: "./src/img/robits/snake-man.png",
     },
     {
@@ -19,6 +21,7 @@ export default function megaData() {
       src: "./src/img/robits/needle-man.png",
       title: "Needle Man",
       alt: "",
+      desc: "A robot created to work in energy mines. His Needle Cannon can pierce a ten-inch brick. - 'Feel the eye of the needle!'",
       thumb: "./src/img/robits/needle-man.png",
     },
     {
@@ -26,6 +29,7 @@ export default function megaData() {
       src: "./src/img/robits/hard-man.png",
       title: "Hard Man",
       alt: "",
+      desc: "Made of ceramic titanium, he weighs almost three tons. - 'Ohhh, what a drag...'",
       thumb: "./src/img/robits/hard-man.png",
     },
     {
@@ -33,6 +37,7 @@ export default function megaData() {
       src: "./src/img/robits/mega-man.png",
       title: "mega man",
       alt: "",
+      desc: "A super robot created by Dr. Light. He is the guardian of peace and justice! - 'I'll protect the world!'",
       thumb: "./src/img/robits/mega-man.png",
     },
     {
@@ -40,6 +45,7 @@ export default function megaData() {
       src: "./src/img/robits/top-man.png",
       title: "Top Man",
       alt: "",
+      desc: "Being equipped with the auto balance system, he can spin rapidly. - 'You spin me right round, baby!!'",
       thumb: "./src/img/robits/top-man.png",
     },
     {
@@ -47,6 +53,7 @@ export default function megaData() {
       src: "./src/img/robits/gemini-man.png",
       title: "Gemini Man",
       alt: "",
+      desc: "He can create an alter ego with a hologram. He is also a narcissist. - 'My clones are very impressive.'",
       thumb: "./src/img/robits/gemini-man.png",
     },
     {
@@ -54,6 +61,7 @@ export default function megaData() {
       src: "./src/img/robits/magnet-man.png",
       title: "Magnet Man",
       alt: "",
+      desc: "A powerful robot that has magnetic power. Though he is a robot, he is addicted to magnetic therapy. - 'I feel tense these days...'",
       thumb: "./src/img/robits/magnet-man.png",
     },
     {
@@ -61,14 +69,8 @@ export default function megaData() {
       src: "./src/img/robits/shadow-man.png",
       title: "Shadow Man",
       alt: "",
+      desc: "A robot created after a Japanese ninja. His Shadow Blade is coated with a special and deadly liquid. - 'I can hardly wait for the surprise.'",
       thumb: "./src/img/robits/shadow-man.png",
     },
-    // {
-    //   id: 9,
-    //   src: "./src/img/paw.png",
-    //   title: "",
-    //   alt: "",
-    //   thumb: "./src/img/paw.png",
-    // },
   ];
 }

@@ -5,6 +5,7 @@ export default function data() {
       src: "./src/img/images/catnip.png",
       title: "Spark Man",
       alt: "",
+      desc: "",
       thumb: "./src/img/images/catnip.png",
     },
     {
@@ -12,6 +13,7 @@ export default function data() {
       src: "./src/img/images/bone-orb.webp",
       title: "Snake Man",
       alt: "",
+      desc: "",
       thumb: "./src/img/images/bone-orb.webp",
     },
     {
@@ -19,6 +21,7 @@ export default function data() {
       src: "./src/img/images/bony-steve.webp",
       title: "Needle Man",
       alt: "",
+      desc: "",
       thumb: "./src/img/images/bony-steve.webp",
     },
     {
@@ -26,6 +29,7 @@ export default function data() {
       src: "./src/img/images/youre boned.webp",
       title: "Hard Man",
       alt: "",
+      desc: "",
       thumb: "./src/img/images/youre boned.webp",
     },
     {
@@ -33,6 +37,7 @@ export default function data() {
       src: "./src/img/images/bone-orb2.webp",
       title: "mega man",
       alt: "",
+      desc: "",
       thumb: "./src/img/images/bone-orb2.webp",
     },
     {
@@ -40,6 +45,7 @@ export default function data() {
       src: "./src/img/images/bony-steve.webp",
       title: "Top Man",
       alt: "",
+      desc: "",
       thumb: "./src/img/images/bony-steve.webp",
     },
     {
@@ -47,28 +53,32 @@ export default function data() {
       src: "./src/img/images/youre boned.webp",
       title: "Gemini Man",
       alt: "",
+      desc: "",
       thumb: "./src/img/images/youre boned.webp",
     },
     {
       id: 7,
-      src: "./src/img/images/magnet-man.png",
+      src: "./src/img/robits/magnet-man.png",
       title: "Magnet Man",
       alt: "",
-      thumb: "./src/img/images/magnet-man.png",
+      desc: "",
+      thumb: "./src/img/robits/magnet-man.png",
     },
     {
       id: 8,
-      src: "./src/img/images/shadow-man.png",
+      src: "./src/img/robits/shadow-man.png",
       title: "Shadow Man",
       alt: "",
-      thumb: "./src/img/images/shadow-man.png",
+      desc: "",
+      thumb: "./src/img/robits/shadow-man.png",
     },
-    // {
-    //   id: 9,
-    //   src: "./src/img/paw.png",
-    //   title: "",
-    //   alt: "",
-    //   thumb: "./src/img/paw.png",
-    // },
+    {
+      id: 9,
+      src: "./src/img/images/paw.png",
+      title: "",
+      alt: "",
+      desc: "",
+      thumb: "./src/images/img/paw.png",
+    },
   ];
 }

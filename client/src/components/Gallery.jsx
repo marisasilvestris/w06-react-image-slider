@@ -56,68 +56,59 @@ export default function Gallery({ url }) {
       <SingleView
         singleVisible={singleVisible}
         setSingleVisible={setSingleVisible}
-        images={images}
+        image={images[imgIndex]}
         imgIndex={imgIndex}
+        className="singleview bg-amber-300 fixed left-0 top-0 w-screen h-screen flex overflow-hidden z-999"
       />
-      <div className="gallery sliderContainer h-screen">
+      <div className="gallery flex flex-col min-w-screen min-h-screen">
         {/* /* single container */}
-        <div className="imgContainer">
+        <div className="imgContainer grow relative place-self-center ">
           {imgLength > 0 ? (
             <>
               <Image
-                src={images[imgIndex].src}
-                alt={images[imgIndex].alt}
+                image={images[imgIndex]}
                 onClick={() => {
                   setSingleVisible(!singleVisible);
                 }}
+                className="m-auto size-full"
               />
+              <p>{images[imgIndex].desc}</p>
             </>
           ) : null}
-        </div>
-
-        {/* thumbnails */}
-        <div className="thumbnailContainer flex flex-row place-self-center absolute bottom-0">
-          {imgLength > 0
-            ? images.map((image) => {
-                return (
-                  <div key={image.id} className="thumbnail">
-                    <div className="imgContainer">
-                      <Image
-                        src={image.thumb}
-                        alt={image.alt}
-                        id={image.id}
-                        onClick={() => {
-                          setImgIndex(image.id);
-                        }}
-                      />
-                    </div>
-                  </div>
-                );
-              })
-            : ""}
         </div>
 
         {/* left/right buttons */}
         <Button
           href={null}
           text="<"
-          imgIndex={imgIndex}
-          setImgIndex={setImgIndex}
-          imgLength={imgLength}
-          dir="left"
           onClick={leftBtn}
           className="absolute left-0 top-1/2"
         />
         <Button
           href={null}
           text=">"
-          imgIndex={imgIndex}
-          setImgIndex={setImgIndex}
-          imgLength={imgLength}
-          dir="right"
           onClick={rightBtn}
           className="absolute right-0 top-1/2"
         />
+        {/* thumbnails */}
+        <div className="thumbnailContainer flex flex-row overflow-x-auto h-32 max-w-screen rounded-2xl bg-emerald-200">
+          {imgLength > 0
+            ? images.map((image) => {
+                return (
+                  <div key={image.id} className="thumbnail p-2">
+                    <Image
+                      image={image}
+                      onClick={() => {
+                        setImgIndex(image.id);
+                      }}
+                      className="h-full max-w-max rounded-xl"
+                      setImgIndex={setImgIndex}
+                    />
+                  </div>
+                );
+              })
+            : ""}
+        </div>
       </div>
     </>
   );
