@@ -20,7 +20,7 @@ app.get(`/`, (req, res) => {
   res
     .status(200)
     .send(
-      "all good y'all, but you'll be wanting <a href='./imagelist'>this</a> or <a href='./robitlist>this</a>",
+      "all good y'all, but you'll be wanting <a href='./imagelist'>this</a> or <a href='./robitlist'>this</a>",
     );
 });
 app.get(`/robitlist`, (req, res) => {
